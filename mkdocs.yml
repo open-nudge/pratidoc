@@ -6,15 +6,15 @@
 ---
 # yamllint disable rule:line-length
 site_name: >-
-  opentemplate
+  pratidoc
 site_description: >-
-  All-in-one Python template. One click. Everything included.
+  Lint your repository docs - ensure the essentials are always there.
 site_url: >-
-  https://open-nudge.github.io/opentemplate/
+  https://open-nudge.github.io/pratidoc/
 repo_url: >-
-  https://github.com/open-nudge/opentemplate
+  https://github.com/open-nudge/pratidoc
 repo_name: >-
-  open-nudge/opentemplate
+  open-nudge/pratidoc
 # yamllint enable rule:line-length
 
 exclude_docs: |

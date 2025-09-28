@@ -7,10 +7,10 @@
 
 from __future__ import annotations
 
-import opentemplate
+import pratidoc
 
 
 def test_version() -> None:
     """Smoke test package version."""
     # nosemgrep
-    assert opentemplate.__version__ != ""
+    assert pratidoc.__version__ != ""
