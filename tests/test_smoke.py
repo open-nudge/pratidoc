@@ -14,3 +14,12 @@ def test_version() -> None:
     """Smoke test package version."""
     # nosemgrep
     assert pratidoc.__version__ != ""
+
+
+def test_rules() -> None:
+    """Smoke test rules command."""
+    try:
+        pratidoc._cli.main(args=["rules"])  # noqa: SLF001  # pyright: ignore[reportAttributeAccessIssue]
+    except SystemExit as e:
+        # nosemgrep
+        assert e.code == 0  # noqa: PT017
