@@ -48,13 +48,25 @@ ______________________________________________________________________
 
 ## Features
 
-__pratidoc__ is a … allowing you to:
+__pratidoc__ is a __documentation checker__ which verifies if your project
+contains a set of essential documentation files:
 
-- __Feature 1__: Description of the feature
-- __Feature 2__: Description of the feature
-- __Feature 3__: Description of the feature
-- __Feature 4__: Description of the feature
-- __Feature 5__: Description of the feature
+- __Well-defined files__: Only the files common in large open source projects
+    are searched for.
+- __Comprehensive choice__: Documents from a wide range of categories
+    (like legal, governance, security, community, etc.) are included.
+- __Link to source__: Wherever applicable each rule points to the
+    official/well-respected resource with more information regarding it.
+
+## Table of contents
+
+- [Quick start](#quick-start)
+    - [Installation](#installation)
+    - [Usage](#usage)
+- [Advanced](#advanced)
+    - [Configuration](#configuration)
+    - [Run as a pre-commit hook](#run-as-a-pre-commit-hook)
+    - [Rules](#rules)
 
 ## Quick start
 
@@ -73,49 +85,111 @@ __pratidoc__ is a … allowing you to:
 
 ### Usage
 
-```python
-import pratidoc
+To check against the rules run the following from the command line:
 
-...
+```sh
+> pratidoc check
 ```
 
-### Examples
+> [!NOTE]
+> The command should be ran from the directory which we want to verify
+> __and no path(s) should be passed as arguments!__
 
-<details>
-  <summary><b><big>Short</big></b> (click me)</summary>
-&nbsp;
+an example output could be:
 
-Description of the example
-
-```python
-# Short example
+```sh
+> ALL:-:-: PRATIDOC1 Multiple README files exist.
 ```
 
-</details>
+> [!NOTE]
+> This is a __repo-wide linter__, therefore it will not point to a specific
+> line, instead `ALL:-:-:` means that the rule was violated in
+> current working directory.
 
-<details>
-  <summary><b><big>Common</big></b> (click me)</summary>
-&nbsp;
+## Advanced
 
-Description of the example
+### Configuration
 
-```python
-# Common use case
+You can configure `pratidoc` in `pyproject.toml` (or `.pratidoc.toml`
+in the root of your project, just remove the `[tool.pratidoc]` section),
+for example:
+
+```toml
+[tool.pratidoc]
+# include rules by their code
+include_codes = [1, 2, 5] # default: all rules included
+# exclude rules by their code (takes precedence over include)
+exclude_codes = [4, 5, 6] # default: no rules excluded
+# whether to exit after first error or all errors
+end_mode = "first" # default: "all"
 ```
 
-</details>
+> [!WARNING]
+> You can only disable rules via include/exclude codes as shown above.
 
-<details>
-  <summary><b><big>Advanced</big></b> (click me)</summary>
-&nbsp;
+### Run as a pre-commit hook
 
-Description of the example
+`pratidoc` can be used as a pre-commit hook, to add as a plugin:
 
-```python
-# Something advanced and cool
+```yaml
+repos:
+-   repo: "https://github.com/open-nudge/pratidoc"
+    rev: ...  # select the tag or revision you want, or run `pre-commit autoupdate`
+    hooks:
+    -   id: "pratidoc"
 ```
 
-</details>
+### Rules
+
+> [!TIP]
+> Run `pratidoc rules` to see the list of available rules.
+
+`pratidoc` provides the following rules (links omitted for brevity):
+
+| Name       | Enabled | Description                                      |
+| ---------- | ------- | ------------------------------------------------ |
+| PRATIDOC0  | True    | File README should be defined.                   |
+| PRATIDOC1  | True    | Only one README file should be defined.          |
+| PRATIDOC2  | True    | File SECURITY should be defined.                 |
+| PRATIDOC3  | True    | Only one SECURITY file should be defined.        |
+| PRATIDOC4  | True    | File LICENSE should be defined.                  |
+| PRATIDOC5  | True    | Only one LICENSE file should be defined.         |
+| PRATIDOC6  | True    | File CHANGELOG should be defined.                |
+| PRATIDOC7  | True    | Only one CHANGELOG file should be defined.       |
+| PRATIDOC8  | True    | File CITATION should be defined.                 |
+| PRATIDOC9  | True    | Only one CITATION file should be defined.        |
+| PRATIDOC10 | True    | File DCO should be defined.                      |
+| PRATIDOC11 | True    | Only one DCO file should be defined.             |
+| PRATIDOC12 | True    | File ADOPTERS should be defined.                 |
+| PRATIDOC13 | True    | Only one ADOPTERS file should be defined.        |
+| PRATIDOC14 | True    | File CODE_OF_CONDUCT should be defined.          |
+| PRATIDOC15 | True    | Only one CODE_OF_CONDUCT file should be defined. |
+| PRATIDOC16 | True    | File ROADMAP should be defined.                  |
+| PRATIDOC17 | True    | Only one ROADMAP file should be defined.         |
+| PRATIDOC18 | True    | File CODEOWNERS should be defined.               |
+| PRATIDOC19 | True    | Only one CODEOWNERS file should be defined.      |
+| PRATIDOC20 | True    | File GOVERNANCE should be defined.               |
+| PRATIDOC21 | True    | Only one GOVERNANCE file should be defined.      |
+| PRATIDOC22 | True    | File CONTRIBUTING should be defined.             |
+| PRATIDOC23 | True    | Only one CONTRIBUTING file should be defined.    |
+| PRATIDOC24 | True    | File SUPPORT should be defined.                  |
+| PRATIDOC25 | True    | Only one SUPPORT file should be defined.         |
+
+<!-- pyml disable-num-lines 16 line-length-->
+
+You can consult the following resources to learn more about a given document
+(click on the name to go to the resource):
+
+- [`README`](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes)
+- [`SECURITY`](https://docs.github.com/en/code-security/getting-started/adding-a-security-policy-to-your-repository)
+- [`LICENSE`](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
+- [`CHANGELOG`](https://keepachangelog.com/en/1.1.0/)
+- [`CITATION`](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
+- [`DCO`](https://wiki.linuxfoundation.org/dco)
+- [`CODE_OF_CONDUCT`](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-code-of-conduct-to-your-project)
+- [`SUPPORT`](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-support-resources-to-your-project)
+- [`CONTRIBUTING`](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors)
+- [`CODEOWNERS`](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)
 
 <!-- md-dead-link-check: off -->
 

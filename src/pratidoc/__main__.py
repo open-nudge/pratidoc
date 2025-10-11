@@ -3,12 +3,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-"""Pratidoc linter checking the existence of necessary documents."""
+"""Pratidoc entrypoint."""
 
 from __future__ import annotations
 
-from importlib.metadata import version
+if __name__ == "__main__":  # pragma: no cover
+    from pratidoc import _cli
 
-__version__ = version("pratidoc")
-
-del version
+    _cli.main()

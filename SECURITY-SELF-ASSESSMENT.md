@@ -60,7 +60,8 @@ Lint your repository docs - ensure the essentials are always there.
 
 ### Background
 
-TBD
+__pratidoc__ is a __documentation checker__ which verifies if your project
+contains best practices documents (e.g. `SECURITY.md` or `README.md`)
 
 ### Actors
 
@@ -74,11 +75,11 @@ TBD
 
 ### Goals
 
-TBD
+Check the essential set of files is present within the repository.
 
 ### Non-goals
 
-TBD
+Verifying actual content of the files or their coherence.
 
 ## Self-assessment use
 
@@ -148,7 +149,10 @@ file.
 
 ### Incident response
 
-TBD
+If you discover a security vulnerability within
+[`open-nudge/pratidoc`](https://github.com/open-nudge/pratidoc)
+please report it as outlined in the
+[`SECURITY.md`](SECURITY.md) file or contact security@opennudge.com.
 
 ## Appendix
 
