@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: © 2025 open-nudge <https://github.com/open-nudge>
+# SPDX-FileContributor: szymonmaszke <github@maszke.co>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+---
+- id: "pratidoc"
+  name: "pratidoc"
+  description: >-
+    Lint your repository docs - ensure the essentials are always there.
+  language: "python"
+  entry: "pratidoc"
+  args:
+    - "check"
+  always_run: true
+...
