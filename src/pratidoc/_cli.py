@@ -73,6 +73,7 @@ def main(
         include_codes=include_codes,
         exclude_codes=exclude_codes,
         end_mode=config.get("end_mode", "all"),
+        pass_files=False,
         args=args,
         description="pratidoc - ensure essential documentation is present.",
     )
